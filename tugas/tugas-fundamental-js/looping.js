@@ -11,7 +11,7 @@ console.log("\n")
 var angka2 = 20
 while(angka2 >= 2){
     console.log(angka2 + "- I will become a MERN Stack developer")
-    angka2 = angka2-2
+    angka2 = angka2
 }
 
 // NOMOR 2
