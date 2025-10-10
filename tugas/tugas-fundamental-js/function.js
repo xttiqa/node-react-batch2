@@ -69,17 +69,41 @@ console.log(palindrome('mister'));
 // NOMOR 6
 console.log("\n")
 console.log("NOMOR 6.")
-function palindromeAngka(angka){
-    let angkaString = String(angka)
-    let angkaPalindrome = angkaString.split("").reverse().join("")
-    if (angkaPalindrome === angkaString){
-        return angka + 11
-    } else if (angkaPalindrome !== angkaString){
-        return 
+function palindromeAngka(angka) {
+    angka++;
+    while (true) {
+        let angkaString = String(angka);
+        let angkaPalindrome = angkaString.split("").reverse().join("");
+        if (angkaPalindrome === angkaString) {
+            return angka;
+        } else {
+            angka++;
+        }
     }
 }
-console.log(palindromeAngka(11)); 
+
+console.log(palindromeAngka(10)); 
 
 // NOMOR 7
 console.log("\n")
 console.log("NOMOR 6.")
+function cekPermutasi(str1, str2) {
+  if (str1.length !== str2.length) {
+    return false;
+  }
+
+  let sorted1 = str1.split('').sort().join('');
+  let sorted2 = str2.split('').sort().join('');
+
+  if(sorted1 === sorted2){
+    return "true"
+  } else {
+    return "false"
+  }
+}
+
+console.log(cekPermutasi("abah", "baha")); // true
+console.log(cekPermutasi("ondel", "delon")); // true
+console.log(cekPermutasi("paul sernine", "arsene lupin")); // true
+console.log(cekPermutasi("taco", "taca")); // false
+

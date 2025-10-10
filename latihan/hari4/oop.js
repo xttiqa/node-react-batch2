@@ -19,6 +19,8 @@ console.log(innovam)
 
 
 
+
+
 class Orang{
     constructor(nama){
         this.nama = nama;
