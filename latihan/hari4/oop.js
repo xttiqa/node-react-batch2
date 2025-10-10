@@ -3,6 +3,7 @@ class Car {
         this.brand = brand
         this.factory = factory
         this.sound = "vroom! vroom!"
+        this.color = ""
     }
 
     present(){
@@ -11,5 +12,7 @@ class Car {
 }
 
 var innovam = new Car("Innovam", "Toyotwo")
+innovam.color = "blue"
+console.log(innovam.color)
 console.log(innovam.present())
 console.log(innovam)
