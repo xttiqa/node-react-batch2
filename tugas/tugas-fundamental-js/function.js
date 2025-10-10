@@ -7,15 +7,27 @@ function introduce(nama, jeniskelamin, pekerjaan, usia){
         return "Bu " + nama + " adalah seorang " + pekerjaan + " yang berusia " + usia + " tahun"
     }
 }
-
 var john = introduce("John", "laki-laki", "penulis", "30")
 console.log(john)
 var sarah = introduce("Sarah", "perempuan", "model", "28")
 console.log(sarah)
 
+
 // NOMOR 2
 console.log("\n")
 console.log("NOMOR 2.")
+var text = "Super Bootcamp Fullstack Dev 2022";
+function karakterUnik(str) {
+  str = str.toLowerCase();
+  let hasil = "";
+  for (let i = 0; i < str.length; i++) {
+    if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
+      hasil += str[i];
+    }
+  }
+  return hasil;
+}
+console.log(karakterUnik(text));
 
 
 // NOMOR 3
@@ -38,6 +50,7 @@ function urutanAngka(arrayAngka){
 }
 console.log(urutanAngka(angka))
 
+
 // NOMOR 4
 console.log("\n")
 console.log("NOMOR 4.")
@@ -48,6 +61,7 @@ console.log(arrangeBahasa("bahasa"))
 console.log(arrangeBahasa("similikiti"))
 console.log(arrangeBahasa("sanbercode"))
 console.log(arrangeBahasa(""))
+
 
 // NOMOR 5
 console.log("\n")
@@ -66,6 +80,7 @@ console.log(palindrome('nababan'));
 console.log(palindrome('haji ijah'));
 console.log(palindrome('mister')); 
 
+
 // NOMOR 6
 console.log("\n")
 console.log("NOMOR 6.")
@@ -81,8 +96,8 @@ function palindromeAngka(angka) {
         }
     }
 }
-
 console.log(palindromeAngka(10)); 
+
 
 // NOMOR 7
 console.log("\n")
@@ -101,7 +116,6 @@ function cekPermutasi(str1, str2) {
     return "false"
   }
 }
-
 console.log(cekPermutasi("abah", "baha")); // true
 console.log(cekPermutasi("ondel", "delon")); // true
 console.log(cekPermutasi("paul sernine", "arsene lupin")); // true

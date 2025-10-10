@@ -80,14 +80,35 @@ var people =[
   {name: "Ellie", job: "Designer", gender: "female", age: 35},
   {name: "Danny", job: "Footballer", gender: "male", age: 30},
 ]
-function urutkanUmur(x){
-   for (let index = 0; index < people.length; index++) {
-        people.sort((a,b) => a.age - b.age)
-        console.log(`${index+1}. ${people[index].name}`)
-    }
-} 
-urutkanUmur(people)
+var people = [
+  { name: "John", job: "Programmer", gender: "male", age: 30 },
+  { name: "Sarah", job: "Model", gender: "female", age: 27 },
+  { name: "Jack", job: "Engineer", gender: "male", age: 25 },
+  { name: "Ellie", job: "Designer", gender: "female", age: 35 },
+  { name: "Danny", job: "Footballer", gender: "male", age: 30 },
+];
+
+function urutkanUmur(x) {
+  x.sort((a, b) => a.age - b.age);
+  for (let i = 0; i < x.length; i++) {
+    console.log(`${i + 1}. ${x[i].name}`);
+  }
+}
+urutkanUmur(people);
 
 // NOMOR 6
 console.log("\n")
 console.log("NOMOR 6.")
+var phone = {
+  name: "Samsung Galaxy Note 20",
+  brand: "Samsung",
+  colors: ["Black"],
+  release: 2020
+}
+function addColors(warnaBaru) {
+  phone.colors.push(warnaBaru);
+}
+addColors("Gold")
+addColors("Silver")
+addColors("Brown")
+console.log(phone)
