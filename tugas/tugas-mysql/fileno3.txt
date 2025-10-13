@@ -1,0 +1,15 @@
+Soal No. 3
+Tampilkan seluruh data posts yang ditulis oleh john doe 
+Jawab :
+
+Tampilkan category name, post title, author name yang memiliki category basic saja
+Jawab :
+
+Tampilkan category name, post title, dan body yang ditulis oleh robert dan frank
+Jawab :
+
+Tampilkan nama penulis dan nama category untuk artikel yang memiliki lebih dari atau sama dengan dua category
+Jawab :
+
+Tampilkan nama penulis dan pos title untuk artikel yang memilik hanya 1 category saja
+Jawab :
