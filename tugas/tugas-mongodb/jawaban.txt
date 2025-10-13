@@ -1,0 +1,23 @@
+Soal 1 Membuat database
+Buatlah database dengan nama “myshop”. Tulislah di text jawaban pada nomor 1.
+Jawab :
+
+Soal 2 Membuat collection dan memasukkan data pada collection
+Masukkanlah data data berikut dengan perintah db collection
+Jawab :
+
+Soal 3 Mengambil data dari database
+1. Mengambil data users
+Buatlah sebuah query untuk mendapatkan data seluruh user pada collection users. Sajikan semua field pada collection users KECUALI password nya.
+Jawab :
+
+2. Mengambil data items
+- Buatlah sebuah query untuk mendapatkan data item pada collection items yang memiliki harga di atas 1000000 (satu juta).
+Jawab :
+
+- Buat sebuah query untuk mengambil data item pada collection items yang memiliki name serupa atau mirip (like) dengan kata kunci “uniklo”, “watch”, atau “sang” (pilih salah satu saja).
+Jawab :
+
+Soal 4 Mengubah data dari database
+Ubahlah data pada collection items untuk item dengan nama sumsang harganya (price) menjadi 2500000. Masukkan query pada text jawaban di nomor ke 4.
+Jawab :
