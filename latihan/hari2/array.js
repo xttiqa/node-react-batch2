@@ -56,20 +56,20 @@ console.log("SPLICE")
 arrHewan.splice(2,0, "Laba-Laba", "Cicak")
 console.log(arrHewan)
 
-// LOOPING FOR ARRAY
-console.log("")
-console.log("LOOPING FOR ARRAY")
-var arr = ["Jeruk", "Mangga", "Apel"]
-for(var i = 0; i < arr.length; i++){
-    console.log("Buah ke-" + (i+1) + " : " + arr[i])
-}
+// // LOOPING FOR ARRAY
+// console.log("")
+// console.log("LOOPING FOR ARRAY")
+// var arr = ["Jeruk", "Mangga", "Apel"]
+// for(var i = 0; i < arr.length; i++){
+//     console.log("Buah ke-" + (i+1) + " : " + arr[i])
+// }
 
-// LOOPING WHILE ARRAY
-console.log("")
-console.log("LOOPING WHILE ARRAY")
-var names = ["Adi", "Budi", "Didi"]
-var j = 0;
-while(j < names.length){
-    console.log("Buah ke-" + (j+1) + " : " + arr[j])
-    j++
-}
+// // LOOPING WHILE ARRAY
+// console.log("")
+// console.log("LOOPING WHILE ARRAY")
+// var names = ["Adi", "Budi", "Didi"]
+// var j = 0;
+// while(j < names.length){
+//     console.log("Buah ke-" + (j+1) + " : " + arr[j])
+//     j++
+// }

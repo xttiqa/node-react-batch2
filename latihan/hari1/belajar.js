@@ -6,8 +6,7 @@ var angka2 = 7;
 // OPERATOR KONDISIONAL
 var benar = true;
 var salah = false;
-// console.log(benar || salah)
-
+// console.log(benar || salah
 var str1 = "Attiqa";
 var str2 = "Lucky";
 var nama = "Attiqa Lucky";
