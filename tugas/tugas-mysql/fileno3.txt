@@ -1,15 +1,55 @@
 Soal No. 3
-Tampilkan seluruh data posts yang ditulis oleh john doe 
+- Tampilkan seluruh data posts yang ditulis oleh john doe 
 Jawab :
+SELECT blog_posts.*
+FROM blog_posts
+JOIN users ON blog_posts.author_id = users.id
+WHERE users.name = 'John Doe';
 
-Tampilkan category name, post title, author name yang memiliki category basic saja
+- Tampilkan category name, post title, author name yang memiliki category basic saja
 Jawab :
+SELECT categories.name, blog_posts.title, users.name
+FROM post_categories
+JOIN categories ON categories.id = post_categories.category_id 
+JOIN blog_posts ON blog_posts.id = post_categories.post_id 
+JOIN users ON users.id = blog_posts.author_id 
+WHERE categories.name = 'Basic';
 
-Tampilkan category name, post title, dan body yang ditulis oleh robert dan frank
+- Tampilkan category name, post title, dan body yang ditulis oleh robert dan frank
 Jawab :
+SELECT categories.name, blog_posts.title, blog_posts.body
+FROM users
+JOIN blog_posts ON blog_posts.author_id = users.id
+JOIN post_categories ON blog_posts.id = post_categories.post_id 
+JOIN categories ON categories.id = post_categories.category_id 
+WHERE users.name = 'Frank' OR users.name = 'Robert';
 
-Tampilkan nama penulis dan nama category untuk artikel yang memiliki lebih dari atau sama dengan dua category
+- Tampilkan nama penulis dan nama category untuk artikel yang memiliki lebih dari atau sama dengan dua category
 Jawab :
+SELECT users.name, categories.name
+FROM blog_posts
+JOIN post_categories ON blog_posts.id = post_categories.post_id
+JOIN users ON users.id = blog_posts.author_id
+JOIN categories ON categories.id = post_categories.category_id
+WHERE blog_posts.id IN (
+    SELECT post_id
+    FROM post_categories
+    GROUP BY post_id
+    HAVING COUNT(category_id) >= 2
+)
+ORDER BY blog_posts.id;
 
-Tampilkan nama penulis dan pos title untuk artikel yang memilik hanya 1 category saja
+- Tampilkan nama penulis dan pos title untuk artikel yang memilik hanya 1 category saja
 Jawab :
+SELECT users.name, blog_posts.title
+FROM blog_posts
+JOIN post_categories ON blog_posts.id = post_categories.post_id
+JOIN users ON users.id = blog_posts.author_id
+JOIN categories ON categories.id = post_categories.category_id
+WHERE blog_posts.id IN (
+    SELECT post_id
+    FROM post_categories
+    GROUP BY post_id
+    HAVING COUNT(category_id) = 1
+)
+ORDER BY blog_posts.id;

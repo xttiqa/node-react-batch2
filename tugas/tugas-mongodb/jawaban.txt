@@ -1,23 +1,29 @@
 Soal 1 Membuat database
 Buatlah database dengan nama “myshop”. Tulislah di text jawaban pada nomor 1.
-Jawab :
+Jawab : test> use myshop
 
 Soal 2 Membuat collection dan memasukkan data pada collection
 Masukkanlah data data berikut dengan perintah db collection
-Jawab :
+Jawab : 
+- Users :
+myshop> db.users.insertMany([{name:'John Doe', email:'john@doe.com', password:'john123'}, {name:'John Doe', email:'john@doe.com', password:'john123'}]);
+- Categories :
+myshop> db.categories.insertMany([{name: 'gadget'}, {name: 'cloth'}, {name: 'men'}, {name: 'women'}, {name: 'branded'}]);
+- Items :
+myshop> db.items.insertMany([{name: 'Sumsang b50', description: 'hape keren dari merek sumsang', price: 4000000, stock: 100}, {name: 'Uniklooh', description: 'baju keren dari brand ternama', price: 500000, stock: 50},{name: 'IMHO Watch', description: 'jam tangan anak yang jujur banget', price: 2000000, stock: 10}]);
 
 Soal 3 Mengambil data dari database
 1. Mengambil data users
 Buatlah sebuah query untuk mendapatkan data seluruh user pada collection users. Sajikan semua field pada collection users KECUALI password nya.
-Jawab :
+Jawab : myshop> db.users.find({}, {password: 0});
 
 2. Mengambil data items
 - Buatlah sebuah query untuk mendapatkan data item pada collection items yang memiliki harga di atas 1000000 (satu juta).
-Jawab :
+Jawab : myshop> db.items.find({price: {$gt : 1000000}});
 
 - Buat sebuah query untuk mengambil data item pada collection items yang memiliki name serupa atau mirip (like) dengan kata kunci “uniklo”, “watch”, atau “sang” (pilih salah satu saja).
-Jawab :
+Jawab : myshop> db.items.find({name : {$regex : 'sang'}});
 
 Soal 4 Mengubah data dari database
 Ubahlah data pada collection items untuk item dengan nama sumsang harganya (price) menjadi 2500000. Masukkan query pada text jawaban di nomor ke 4.
-Jawab :
+Jawab : myshop> db.items.updateOne({name: 'Sumsang b50'}, {$set: {price: 2500000}});
