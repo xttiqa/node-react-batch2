@@ -1,0 +1,79 @@
+const { connectionPool } = require('../config/db')
+
+const indeksNilai = (nilai) => {
+    if (nilai >= 80){
+        return nilai = "A"
+    } else if (nilai >= 70 && nilai < 80){
+        return nilai = "B"
+    } else if (nilai >= 60 && nilai < 70){
+        return nilai = "C"
+    } else if (nilai >= 50 && nilai < 60){
+        return nilai = "D"
+    } else if (nilai < 50){
+        return nilai = "E"
+    }
+} 
+
+const createNilai = (req, res) => {
+    let {nama, mata_kuliah, nilai} = req.body
+    let queryText = `INSERT INTO nilai_mahasiswa (nama, mata_kuliah, nilai, indeks_nilai, created_at, updated_at) VALUES("${nama}", "${mata_kuliah}", ${nilai}, "${indeksNilai(nilai)}", now(), now())`
+    
+    connectionPool.query(queryText, (err) => {
+        if(err){
+            console.log(err)
+            return
+        }
+        res.json({'message': 'Succesfully Created', 'status': 'success'})
+    })
+}
+
+const readNilai = (req, res) => {
+    let queryText = "SELECT * FROM nilai_mahasiswa"
+    connectionPool.query(queryText, (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        res.json(data);
+    });
+}
+
+const readNilaiById = (req, res) => {
+    let {id} = req.params
+    let queryText = `SELECT * FROM nilai_mahasiswa WHERE id = ${id}`
+    connectionPool.query(queryText, (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        res.json(data);
+    });
+}
+
+const updateNilai = (req, res) => {
+    let {nama, mata_kuliah, nilai} = req.body
+    let {id} = req.params
+    let queryText = `UPDATE nilai_mahasiswa SET nama = "${nama}", mata_kuliah = "${mata_kuliah}", nilai = ${nilai}, indeks_nilai = "${indeksNilai(nilai)}", updated_at = NOW() WHERE id = ${id}`
+    connectionPool.query(queryText, (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        res.json({message: "Update Sukses", status: "Success"});
+    });
+}
+
+const deleteNilai = (req, res) => {
+    let {id} = req.params
+    let queryText = `DELETE FROM nilai_mahasiswa WHERE id = ${id}`
+    connectionPool.query(queryText, (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        
+        res.json({message: "Delete Sukses", status: "Success"});
+    });
+}
+
+module.exports = {createNilai, readNilai, updateNilai, deleteNilai, readNilaiById}
