@@ -121,13 +121,15 @@ const deleteMovie = async(req, res) => {
         })
         res.json({
             data: movies,
-            message: 'Movie was successfully created',
+            message: 'Movie was successfully delete',
             status: 'Success'
         })
+        return
+
     } catch(err) {
         res.json({
             data: 'null',
-            message: 'Movie was unsuccessfully created',
+            message: err.message,
             status: 'Unsuccess'
         })
     }
