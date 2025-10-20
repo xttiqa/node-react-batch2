@@ -38,9 +38,9 @@
 const { connectionPool } = require('../config/db')
 
 const createMovie = (req, res) => {
-    let {title, year} = req.body
+    let {title, year,categoryId} = req.body
 
-    let queryText = `INSERT INTO movies (title, year, created_at, updated_at) VALUES("${title}", ${year}, now(), now())`
+    let queryText = `INSERT INTO movies (title, year,categoryId, createdAt, updatedAt) VALUES("${title}", ${year}, ${categoryId}, now(), now())`
 
     connectionPool.query(queryText, (err) => {
         if(err){
