@@ -1,0 +1,71 @@
+// import { PrismaClient, Prisma } from '@prisma/client'
+// import { PrismaClient } from '../../generated/prisma'
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
+
+const createCategory = async(req, res) => {
+    let {name} = req.body
+    try {
+        const category = await prisma.category.create({
+            data: {
+                name
+            },
+        })  
+        res.json({
+            data: category, 
+            message: 'Category was successfully created', 
+            status: 'Success'
+        })
+        return
+
+    } catch(err) {
+        res.json({
+            data: 'null',
+            message: err.message,
+            status: 'Unsuccess'
+        })
+    }
+}
+
+const readCategory = async(req, res) => {
+    try {
+        const category = await prisma.category.findMany()
+        res.json({
+            data : category, 
+            message: 'Category was successfully fetch',
+            status: 'Success'
+        })
+        return
+    } catch(err) {
+        res.json({
+            data: 'null',
+            message: err.message,
+            status: 'Unsuccess'
+        })
+    }
+}
+
+const deleteCategory = async(req, res) => {
+    let {id} = req.params
+    try {
+        const category = await prisma.category.delete({
+            where: {
+                id: Number(id) 
+            },
+        })
+        res.json({
+            data: category,
+            message: 'Movie was successfully delete',
+            status: 'Success'
+        })
+        return
+
+    } catch(err) {
+        res.json({
+            data: 'null',
+            message: err.message,
+            status: 'Unsuccess'
+        })
+    }
+}
+module.exports = {createCategory, readCategory, deleteCategory}
