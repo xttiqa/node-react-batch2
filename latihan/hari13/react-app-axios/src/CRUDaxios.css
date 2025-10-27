@@ -1,6 +1,9 @@
-table {
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* table {
   border-collapse: collapse;
-  width: 100%;
+  width: 700px
 }
 
 th, td {
@@ -8,6 +11,27 @@ th, td {
   padding: 8px;
 }
 
-tr:nth-child(even) {
-  background-color: #18a6c9;
+tr:nth-child(odd) {
+  background-color: #70458b;
 }
+
+button {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+button:hover {
+    box-shadow: 0px;
+}
+
+.btn-edit {
+    background-color: rgb(34, 133, 214);
+}
+
+.btn-hapus {
+    background-color: crimson;
+}
+
+th, td {
+    text-align: center;
+} */

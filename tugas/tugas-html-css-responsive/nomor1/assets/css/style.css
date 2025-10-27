@@ -1,0 +1,167 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Poppins";
+    box-sizing: border-box;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    padding: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    width: 100%;
+    z-index: 4;
+}
+
+nav {
+    align-items: center;
+    display: flex;
+}
+
+nav ul li{
+    display: inline-block;
+    margin: 0px 20px;
+    padding: 8px
+}
+
+li a {
+    text-decoration: none;
+    color: #203239
+}
+
+.container_hero{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    margin: 200px;
+}
+
+.container_hero-image {
+    text-align: right;
+}
+
+.container_hero-image > img {
+    
+}
+
+.container_hero-headline {
+    width: 450px;
+    padding: 0 30px;
+}
+
+.container_describe {
+    display: flex;
+    justify-content: space-around;
+}
+
+.container_describe-animation {
+    padding: 130px 220px;
+    background-color: #203239;
+}
+
+.container_describe-animation > i {
+    font-size: 150px;
+    color: white
+}
+
+.container_describe-info {
+    padding: 80px;
+    align-items: center;
+    display: flex;
+}
+
+.container_describe-info__card {
+    border: 3px solid #203239;
+    padding: 30px;
+    font-size: 20px;
+}
+
+footer {
+    display: flex;
+    justify-content: start;
+    padding: 40px;
+}
+
+.container_hero-headline ul {
+    display: flex;
+}
+
+.container_hero-headline ul li{
+    display: inline-block;
+    margin: 0px 20px;
+    margin: 10px;
+}
+
+.container_hero-headline h1 {
+    margin-bottom: 10px;
+}
+
+/* RIWAYAT PRIBADI */
+.main {
+}
+
+.container-history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-history__motto {
+    margin-top : 80px;
+    padding: 30px;
+}
+
+.container-history__table {
+    padding: 20px;
+}
+
+.container-history__table > h1 {
+    padding: 10px 0px;
+    margin-bottom: 30px;
+}
+
+.tabel-diri {
+    border: 1px solid #203239;
+    margin-bottom: 30px;
+}
+
+.tabel-diri tr th{
+    border: 1px solid #203239;
+    text-align: start;
+    padding: 5px;
+}
+
+.tabel-diri tr td{
+    border: 1px solid #203239;
+    padding: 5px;
+}
+
+/* PORTOFOLIO */
+.container-wrapping__card img {
+    width: 200px;
+    transition: 0.5s ease;
+}
+
+.container-wrapping__card img:hover {
+    transform: scale(1.3);
+}
+
+.container-wrapping__card {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container-wrapping{
+    width: 800px;
+    margin: 150px 0px 50px 0px;
+}
+
+#container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
