@@ -76,23 +76,41 @@ export default function CRUDaxios(){
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            let text = "Apa anda yakin menyimpan data?"
-            if (confirm(text)) {
-                await axios.post('http://localhost:3000/api/movie', {
-                    title: title,
-                    year: Number(year),
-                    categoryId: Number(categoryId)
-                })
-                fetchData()
-                fetchDataCategory()
-            } 
+            await axios.post('http://localhost:3000/api/movie', {title: input.title, year:Number(input.year), categoryId:Number(input.categoryId)})
+            fetchData()
+            fetchDataCategory()
+            console.log(input)
+            setInput({...input})
+
+            let textSimpan = "Apa anda yakin menyimpan data?"
+            let textUpdate = "Data anda yakin memperbarui data?"
+
+            if (id) {
+                if(confirm(textUpdate)){
+                    await axios.put(`http://localhost:3000/api/movie/${id}`, {
+                        title: title,
+                        year: Number(year),
+                        categoryId: Number(categoryId)
+                    })
+                }
+            } else {
+                if(confirm(textSimpan)){
+                    await axios.post('http://localhost:3000/api/movie', {
+                        title: title,
+                        year: Number(year),
+                        categoryId: Number(categoryId)
+                    })
+                }
+            }
+            fetchData()
+            fetchDataCategory()
+            clearData()
         } catch(err) {
             alert(err)
         }
     }
 
     const deleteData = async (id) => {
-        event.preventDefault()
         try {
             let text = "Apa anda yakin menyimpan data?"
             if (confirm(text)) {
@@ -109,23 +127,22 @@ export default function CRUDaxios(){
         }
     }
 
-    const handleEdit = async (event) => {
-        // setId(event.target.value)
-        // // event.preventDefault()
-        // await axios.put(`http://localhost:3000/api/movie/${id}`, {
-        //     title: title,
-        //     year: Number(year),
-        //     categoryId: Number(categoryId)
-        // })
+    const clearData = () => {
+        setTitle('')
+        setYear('')
+        setCategoryId('')
+        setId('')
+    }
 
+    const handleEdit = async (id) => {
         try {
             axios.get(`http://localhost:3000/api/movie/${id}`).then((response) => {
-            // setDataCategory(response.data.data)
             let result = response.data.data
             console.log(result)
             setTitle(result.title)
             setYear(result.year)
             setCategoryId(result.categoryId)
+            setId(result.id)
         })} catch(err) {
             console.log(err)
         }
@@ -134,8 +151,7 @@ export default function CRUDaxios(){
 
     return (
         <>
-            <h1>Hai</h1>
-            <h2>CRUD axios</h2>
+            <h1 class="judul-crud-axios">CRUD Axios</h1>
             <form onSubmit={handleSubmit}>
                 <label for="title">Title</label>
                 <input type="text" id="title" name="title" onChange={handleChangeTitle} value={title} placeholder="Title" />

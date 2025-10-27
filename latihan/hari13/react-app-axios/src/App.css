@@ -76,3 +76,16 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #45a049;
 }
+
+input {
+  color: black;
+}
+
+select {
+  color: black;
+}
+
+.judul-crud-axios {
+  color: rgb(212, 143, 255);
+  padding: 30px;
+}
