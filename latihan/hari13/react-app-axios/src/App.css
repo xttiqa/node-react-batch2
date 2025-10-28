@@ -48,6 +48,9 @@ form {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  width: 500px;
+  display: inline-block;
+  margin-bottom: 50px;
 }
 
 label {display: block; color: black}
@@ -88,4 +91,9 @@ select {
 .judul-crud-axios {
   color: rgb(212, 143, 255);
   padding: 30px;
+}
+
+table {
+  margin-bottom: 50px;
+  width: 700px;
 }

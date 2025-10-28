@@ -9,9 +9,9 @@ const { validationBodyMovies } = require('../middleware/validation')
 const router = express.Router()
 
 router.post('/movie', createMovie)
-router.get('/movie',readMovie)
-router.get('/movie/:id',readMovieById)
-router.put('/movie/:id',updateMovie)
-router.delete('/movie/:id',deleteMovie)
+router.get('/movie', readMovie)
+router.get('/movie/:id', readMovieById)
+router.put('/movie/:id', updateMovie)
+router.delete('/movie/:id', deleteMovie)
 
 module.exports = router

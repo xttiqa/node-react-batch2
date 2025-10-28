@@ -6,11 +6,10 @@ const prisma = new PrismaClient()
 const createMovie = async(req, res) => {
     let {title, year, categoryId} = req.body
     console.log(req.body);
-    
     try {
         const movies = await prisma.movies.create({
             data: {
-                title, year, categoryId 
+                title, year, categoryId, 
             },
         })  
         console.log(movies);
@@ -18,17 +17,16 @@ const createMovie = async(req, res) => {
         res.json({
             data: movies, 
             message: 'Movie was successfully created', 
-            status: 'Success'
+            status: 'Success',
         })
         return
-
     } catch(err) {
         console.log(err.message);
         
         res.json({
             data: 'null',
             message: err.message,
-            status: 'Unsuccess'
+            status: 'Unsuccess',
         })
     }
 }
@@ -36,10 +34,22 @@ const createMovie = async(req, res) => {
 
 const readMovie = async(req, res) => {
     try {
-        const movies = await prisma.movies.findMany()
-        
+        const movies = await prisma.movies.findMany({
+            select:{
+                id:true,
+                title:true,
+                year:true,
+                categoryId:true,
+                category:{
+                    select:{
+                        id:true,
+                        name:true,
+                    }
+                }
+            }
+        })
         res.json({
-            data : movies, 
+            movies, 
             message: 'Movie was successfully fetch',
             status: 'Success'
         })
@@ -48,7 +58,7 @@ const readMovie = async(req, res) => {
         res.json({
             data: 'null',
             message: 'Movie was unsuccessfully fetch',
-            status: 'Unsuccess'
+            status: 'Unsuccess',
         })
     }
 }
@@ -76,15 +86,14 @@ const readMovieById = async(req, res) => {
         res.status(status).json({
             data: movies,
             message,
-            status: stat
+            status: stat,
         })
-
         return
     } catch(err) {
         res.json({
             data: 'null',
             message: 'Movie was unsuccessfully created',
-            status: 'Unsuccess'
+            status: 'Unsuccess',
         })
     }
 }
@@ -95,25 +104,23 @@ const updateMovie = async(req, res) => {
     try {
         const movies = await prisma.movies.update({
             where: {
-                id: Number(id) 
+                id: Number(id),
             },
             data: {
-                title, year
+                title, year, categoryId,
             }
         })
-
         res.json({
             data: movies,
             message: 'Movie was successfully created',
-            status: 'Success'
+            status: 'Success',
         })
         return
-
     } catch(err){
         res.json({
             data: 'null',
             message: 'Movie was not updated',
-            status: 'Unsuccess'
+            status: 'Unsuccess',
         })
     }
 }
@@ -123,21 +130,20 @@ const deleteMovie = async(req, res) => {
     try {
         const movies = await prisma.movies.delete({
             where: {
-                id: Number(id) 
+                id: Number(id),
             },
         })
         res.json({
             data: movies,
             message: 'Movie was successfully delete',
-            status: 'Success'
+            status: 'Success',
         })
         return
-
     } catch(err) {
         res.json({
             data: 'null',
             message: err.message,
-            status: 'Unsuccess'
+            status: 'Unsuccess',
         })
     }
 }
