@@ -26,8 +26,14 @@ console.log(perkenalanSarah)
 // NOMOR 3
 console.log("\n")
 console.log("NOMOR 3.")
-const newFunction = (firstName, lastName) => {return console.log(firstName + " " + lastName)}
-newFunction("William", "Imoh").fullName()
+const newFunction = (firstName, lastName) => ({
+  firstName,
+  lastName,
+  fullName: () => console.log(`${firstName} ${lastName}`)
+});
+console.log(newFunction("John", "Doe").firstName)     
+console.log(newFunction("Richard", "Roe").lastName)  
+newFunction("William", "Imoh").fullName()      
 
 // NOMOR 4
 console.log("\n")
@@ -86,3 +92,42 @@ let newProducts = [
 samsung = addProducts(samsung, newProducts)
 console.log(samsung)
 
+
+// NOMOR 7
+console.log("\n")
+console.log("NOMOR 7.")
+const convertToObject = (nama, domisili, umur) => ({ nama, domisili, umur });
+
+let data = ["Bondra", "Medan", 25];
+const [nama, domisili, umur] = data;
+console.log(convertToObject(nama, domisili, umur));
+
+// NOMOR 8
+console.log("\n")
+console.log("NOMOR 8.")
+const graduate = (...studentsGroups) => {
+  const allStudents = studentsGroups.flat(); 
+  return allStudents.reduce((acc, { name, class: kelas }) => {
+    if (!acc[kelas]) acc[kelas] = [];
+    acc[kelas].push(name);
+    return acc;
+  }, {});
+};
+
+const data1 = [
+  { name: "Ahmad", class: "adonis" },
+  { name: "Regi", class: "laravel" },
+  { name: "Bondra", class: "adonis" },
+  { name: "Iqbal", class: "vuejs" },
+  { name: "Putri", class: "laravel" }
+];
+
+const data2 = [
+  { name: "Yogi", class: "react" },
+  { name: "Fikri", class: "agile" },
+  { name: "Arief", class: "agile" }
+];
+
+console.log(graduate(data1));
+
+console.log(graduate(data2));
