@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Produk {
+  idproduk     Int              @id @default(autoincrement())
+  namaproduk   String           @db.VarChar(80)
+  deskripsi    String?          @db.Text
+  harga        Int
+  gambar       String?          @db.VarChar(255)
+  active       Boolean          @default(true)
+
+  // Relasi ke DetailPesanan (1 Produk bisa punya banyak DetailPesanan)
+  detailpesanan DetailPesanan[]
+}
+
+model DetailPesanan {
+  iddetailpesanan Int       @id @default(autoincrement())
+  jumlahitem      Int
+  hargasatuan     Decimal    @db.Decimal(10, 2)
+  totalharga      Decimal    @db.Decimal(10, 2)
+  active          Boolean    @default(true)
+
+  // Foreign key ke Produk
+  produkId        Int
+  produk          Produk     @relation(fields: [produkId], references: [idproduk])
+
+  // Relasi ke Custom (1 DetailPesanan punya 1 Custom)
+  custom          Custom?
+
+  // Foreign key ke Pesanan (banyak DetailPesanan bisa dimiliki 1 Pesanan)
+  pesananId       Int
+  pesanan         Pesanan    @relation(fields: [pesananId], references: [idpesanan])
+}
+
+model Custom {
+  idcustom     Int      @id @default(autoincrement())
+  ucapan       String?  @db.Text
+  jumlahlilin  Int?
+  rasa         String?  @db.VarChar(50)
+  catatan      String?  @db.Text
+  active       Boolean  @default(true)
+
+  // Foreign key ke DetailPesanan (1-1 relationship)
+  detailPesananId Int    @unique
+  detailPesanan   DetailPesanan @relation(fields: [detailPesananId], references: [iddetailpesanan])
+}
+
+model Pesanan {
+  idpesanan         Int              @id @default(autoincrement())
+  namapembeli       String           @db.VarChar(50)
+  nohp              String           @db.VarChar(15)
+  alamat            String           @db.VarChar(50)
+  tanggalpesan      DateTime         @default(now())
+  hargakeseluruhan  Decimal          @db.Decimal(10, 2)
+  active            Boolean          @default(true)
+
+  // Relasi ke DetailPesanan (1 Pesanan punya banyak DetailPesanan)
+  detailpesanan     DetailPesanan[]
+}

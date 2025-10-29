@@ -1,0 +1,30 @@
+// import { PrismaClient, Prisma } from '@prisma/client'
+// import { PrismaClient } from '../../generated/prisma'
+const { PrismaClient } =  require('@prisma/client')
+const prisma = new PrismaClient()
+
+const createProduk = async(req, res) => {
+    let {namaproduk, deskripsi, harga, gambar, active} = req.body
+    try {
+        const produk = await prisma.produk.create({
+            data: {
+                namaproduk, deskripsi, harga, gambar, active
+            },
+        })  
+        res.json({
+            data: produk, 
+            message: 'Category was successfully created', 
+            status: 'Success'
+        })
+        return
+
+    } catch(err) {
+        res.json({
+            data: 'null',
+            message: err.message,
+            status: 'Unsuccess'
+        })
+    }
+}
+
+module.exports = {createProduk}
