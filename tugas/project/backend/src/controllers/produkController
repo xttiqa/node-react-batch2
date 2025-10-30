@@ -3,21 +3,20 @@
 const { PrismaClient } =  require('@prisma/client')
 const prisma = new PrismaClient()
 
-const createProduk = async(req, res) => {
-    let {namaproduk, deskripsi, harga, gambar, active} = req.body
+exports.createProduk = async(req, res) => {
+    let {namaproduk, kodeproduk, deskripsi, harga, gambar, active} = req.body
     try {
         const produk = await prisma.produk.create({
             data: {
-                namaproduk, deskripsi, harga, gambar, active
+                namaproduk, kodeproduk, deskripsi, harga, gambar, active,
             },
         })  
         res.json({
             data: produk, 
-            message: 'Category was successfully created', 
+            message: 'Data Produk Ditambahkan', 
             status: 'Success'
         })
         return
-
     } catch(err) {
         res.json({
             data: 'null',
@@ -27,4 +26,102 @@ const createProduk = async(req, res) => {
     }
 }
 
-module.exports = {createProduk}
+exports.readProduk = async(req, res) => {
+    try {
+        const produk = await prisma.produk.findMany()
+        res.json({
+            data : produk, 
+            message: 'Data Produk Muncul',
+            status: 'Success'
+        })
+        return
+    } catch(err) {
+        res.json({
+            data: 'null',
+            message: 'Data Produk Tidak Muncul',
+            status: 'Unsuccess',
+        })
+    }
+}
+
+exports.readProdukById = async(req, res) => {
+    let { id } = req.params
+    try {
+        const produk = await prisma.produk.findUnique({
+            where: {
+                idproduk: Number(id) 
+            }
+        })
+        if(produk){
+            message= 'Data Produk Ada'
+            stat='Success'
+            status=200
+        } else {
+            message= 'Data Produk Tidak Ada'
+            stat='Unsuccess'
+            status=400
+        }
+        res.status(status).json({
+            data: produk,
+            message,
+            status: stat,
+        })
+        return
+    } catch(err) {
+        res.json({
+            data: 'null',
+            message: 'Data Produk Tidak Muncul',
+            status: 'Unsuccess',
+        })
+    }
+}
+
+exports.updateProduk = async(req, res) => {
+    let {namaproduk, kodeproduk, deskripsi, harga, gambar, active} = req.body
+    let {id} = req.params
+    try {
+        const produk = await prisma.produk.update({
+            where: {
+                idproduk: Number(id),
+            },
+            data: {
+                namaproduk, kodeproduk, deskripsi, harga, gambar, active,
+            }
+        })
+        res.json({
+            data: produk,
+            message: 'Data Produk Sudah Diubah',
+            status: 'Success',
+        })
+        return
+    } catch(err){
+        res.json({
+            data: 'null',
+            message,
+            status: 'Unsuccess',
+        })
+    }
+}
+
+exports.deleteProduk = async(req, res) => {
+    let {id} = req.params
+    try {
+        const produk = await prisma.produk.delete({
+            where: {
+                idproduk: Number(id),
+            },
+        })
+        res.json({
+            data: produk,
+            message: 'Data Produk Sudah Dihapus',
+            status: 'Success',
+        })
+        return
+    } catch(err) {
+        res.json({
+            data: 'null',
+            message: err.message,
+            status: 'Unsuccess',
+        })
+    }
+}

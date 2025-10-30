@@ -5,8 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/client"
+  provider = "prisma-client-js"
+  // output   = "../generated/client"
 }
 
 datasource db {
@@ -16,6 +16,7 @@ datasource db {
 
 model Produk {
   idproduk     Int              @id @default(autoincrement())
+  kodeproduk   String           @default("TBD")
   namaproduk   String           @db.VarChar(80)
   deskripsi    String?          @db.Text
   harga        Int
@@ -28,6 +29,7 @@ model Produk {
 
 model DetailPesanan {
   iddetailpesanan Int       @id @default(autoincrement())
+  kodedetail      String    @default("TBD")
   jumlahitem      Int
   hargasatuan     Decimal    @db.Decimal(10, 2)
   totalharga      Decimal    @db.Decimal(10, 2)
@@ -47,6 +49,7 @@ model DetailPesanan {
 
 model Custom {
   idcustom     Int      @id @default(autoincrement())
+  kodecustom   String   @default("TBD")
   ucapan       String?  @db.Text
   jumlahlilin  Int?
   rasa         String?  @db.VarChar(50)
@@ -60,6 +63,7 @@ model Custom {
 
 model Pesanan {
   idpesanan         Int              @id @default(autoincrement())
+  kodepesanan       String           @default("TBD")
   namapembeli       String           @db.VarChar(50)
   nohp              String           @db.VarChar(15)
   alamat            String           @db.VarChar(50)

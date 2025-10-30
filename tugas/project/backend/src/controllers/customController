@@ -1,0 +1,25 @@
+const { PrismaClient } =  require('@prisma/client')
+const prisma = new PrismaClient()
+
+exports.createCustom = async(req, res) => {
+    let {ucapan, jumlahlilin, rasa, catatan, active} = req.body
+    try {
+        const custom = await prisma.custom.create({
+            data: {
+                ucapan, jumlahlilin, rasa, catatan, active,
+            },
+        })  
+        res.json({
+            data: custom, 
+            message: 'Data Produk Ditambahkan', 
+            status: 'Success'
+        })
+        return
+    } catch(err) {
+        res.json({
+            data: 'null',
+            message: err.message,
+            status: 'Unsuccess'
+        })
+    }
+}

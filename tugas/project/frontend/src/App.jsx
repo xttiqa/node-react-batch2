@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import './App.css'
+import './style.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [data, setDataProduk] = useState([]);
+
+  useEffect(() => {
+        fetchDataProduk()
+  }, [])
+    
+    const fetchDataProduk = () => {
+        axios.get('http://localhost:3000/api/produk').then((response) => {
+            setDataProduk(response.data.data)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="cake-container">
+          {data.map((item, index) => (
+          <article className="cake-card" key={index}>
+            <img
+              className="cake-image"
+              src={item.gambar}
+              alt={item.namaproduk}
+              onError={(e) => {
+                e.target.src =
+                  "https://handletheheat.com/wp-content/uploads/2013/04/red-velvet-cake-recipe-SQUARE.jpg";
+              }}
+            />
+
+            <div className="card-body">
+              <h3 className="product-title">{item.namaproduk}</h3>
+              <p className="product-desc">{item.deskripsi}</p>
+              <div className="card-footer">
+                <div className="price">Rp{item.harga}</div>
+                <button className="btn-buy">Tambah</button>
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
     </>
   )
 }
-
-export default App
