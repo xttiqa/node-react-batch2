@@ -36,24 +36,6 @@ export default function CRUDaxios(){
         })
     }
 
-    // const handleChange = (event) => {
-    //     let {name, value} = event.target
-    //     setInput({...input, [name]:value})
-    // }
-
-    // const handleSubmit = (event) => {
-    //     try {
-    //         event.preventDefault()
-    //         axios.post('http://localhost:3000/api/movie', {title: input.title, year:Number(input.year), categoryId:Number(input.category)})
-    //         fetchData()
-    //         fetchDataCategory()
-    //         console.log(input)
-    //         setInput(...input)
-    //     } catch(err){
-    //         alert(err)
-    //     }
-    // } 
-
     const handleChangeTitle = (event) => {
         setTitle(event.target.value)
         console.log(title)
@@ -151,7 +133,7 @@ export default function CRUDaxios(){
 
     return (
         <>
-            <h1 class="judul-crud-axios">Movies</h1>
+            <h1 class="text-5xl font-medium text-sky-50 m-10">Movies</h1>
             <form onSubmit={handleSubmit}>
                 <label for="title">Title</label>
                 <input type="text" id="title" name="title" onChange={handleChangeTitle} value={title} placeholder="Title" />
@@ -170,19 +152,19 @@ export default function CRUDaxios(){
                 <input type="submit" value="Submit" />
             </form>
 
-            <div className="overflow-x-auto">
-                <table className="table table-zebra">
-                    <thead>
+            <div className="overflow-x-auto flex justify-center">
+                <table className="table bg-gray-700 rounded-mb">
+                    <thead className="">
                         <tr>
-                            <th>No.</th>
-                            <th>Title</th>
-                            <th>Tahun</th>
-                            <th>Kategori</th>
-                            <th colspan="2">Aksi</th>
+                            <th className='text-white'>No.</th>
+                            <th className='text-white'>Title</th>
+                            <th className='text-white'>Year</th>
+                            <th className='text-white'>Category</th>
+                            <th colspan="2" className="text-center text-white">Action</th>
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody className="">
                         {currentData.map((item, index)=>{
                         return (
                             <tr key={index}>
@@ -190,16 +172,17 @@ export default function CRUDaxios(){
                                 <td>{item.title}</td>
                                 <td>{item.year}</td>
                                 <td>{item.category.name}</td>
-                                <td>
-                                    <button className="btn btn-active btn-error" onClick={() => handleEdit(item.id)}>Edit</button> &nbsp;
-                                    <button className="btn btn-active btn-success" onClick={() => deleteData(item.id)}>Hapus</button>
+                                <td className="text-center"> 
+                                    <button className="btn btn-active btn-error text-white" onClick={() => handleEdit(item.id)}>Edit</button> &nbsp;
+                                    <button className="btn btn-active btn-success text-white" onClick={() => deleteData(item.id)}>Delete</button>
                                 </td>
                             </tr>
                         )})}
                     </tbody>
                 </table>
+            </div>
                 {/* Pagination DaisyUI */}
-                <div className="join mt-4 flex justify-center">
+                <div className="join flex justify-center">
                     <button
                         className="join-item btn"
                         onClick={() => setCurrentPage(currentPage - 1)}
@@ -228,7 +211,6 @@ export default function CRUDaxios(){
                         »
                     </button>
                 </div>
-            </div>
         </>
     )
 }

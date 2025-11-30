@@ -1,7 +1,7 @@
 import Home from './pages/home' 
 import './App.css'
 import CRUDaxios from './pages/CRUDaxios'
-import MainRoutes from './routes/mainRoutes'
+import MainRoutes from './routes/MainRoutes'
 import './CRUDaxios.css'
 
 function App() {

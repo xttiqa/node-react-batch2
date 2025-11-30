@@ -32,33 +32,17 @@ export default function MainRoutes() {
 function Home() {
   return (
     <div>
-      <h2>Home</h2>
+      <div className="font-medium text-3xl mt-4">Welcome to The Website</div>
     </div>
   );
 }
- 
-// function About() {
-//   return (
-//     <div>
-//       <h2>About</h2>
-//     </div>
-//   );
-// }
- 
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
-    </div>
-  );
-}
- 
+
 function NoMatch() {
   return (
     <div>
-      <h2>Nothing to see here!</h2>
+      <h2 className="font-medium text-3xl mt-4">Nothing to see here!</h2>
       <p>
-        <Link to="/">Go to the home page</Link>
+        <Link to="/" className="text-blue-300 text-xl underline underline-offset-8">Go to the home page</Link>
       </p>
     </div>
   );

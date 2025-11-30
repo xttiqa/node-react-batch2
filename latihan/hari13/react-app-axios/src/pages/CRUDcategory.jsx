@@ -93,20 +93,20 @@ export default function CRUDcategory(){
 
     return (
         <>
-            <h1 class="judul-crud-axios">Category</h1>
+            <h1 class="text-5xl font-medium text-sky-50 m-10">Category</h1>
             <form onSubmit={handleSubmit}>
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" onChange={handleChangeName} value={name} placeholder="Name Category" />
                 <input type="submit" value="Submit" />
             </form>
 
-            <div className="overflow-x-auto">
-                <table className="table table-zebra">
+            <div className="overflow-x-auto flex justify-center">
+                <table className="table bg-gray-700 rounded-m">
                     <thead>
                         <tr>
-                            <th>No.</th>
-                            <th>Nama</th>
-                            <th colspan="2">Aksi</th>
+                            <th className='text-white'>No.</th>
+                            <th className='text-white'>Nama</th>
+                            <th colspan="2" className="text-white text-center">Action</th>
                         </tr>
                     </thead>
 
@@ -116,9 +116,9 @@ export default function CRUDcategory(){
                             <tr key={index}>
                                 <td>{index+1}</td>
                                 <td>{item.name}</td>
-                                <td>
-                                    <button className="btn btn-active btn-error" onClick={() => handleEdit(item.id)}>Edit</button> &nbsp;
-                                    <button className="btn btn-active btn-success" onClick={() => deleteData(item.id)}>Hapus</button>
+                                <td className='text-center'>
+                                    <button className="btn btn-active btn-error text-white" onClick={() => handleEdit(item.id)}>Edit</button> &nbsp;
+                                    <button className="btn btn-active btn-success text-white" onClick={() => deleteData(item.id)}>Hapus</button>
                                 </td>
                             </tr>
                         )})}

@@ -99,7 +99,7 @@ const readMovieById = async(req, res) => {
 }
 
 const updateMovie = async(req, res) => {
-    let {title, year} = req.body
+    let {title, year, categoryId} = req.body
     let {id} = req.params
     try {
         const movies = await prisma.movies.update({
@@ -107,7 +107,7 @@ const updateMovie = async(req, res) => {
                 id: Number(id),
             },
             data: {
-                title, year, categoryId,
+                title, year, categoryId: Number(categoryId),
             }
         })
         res.json({

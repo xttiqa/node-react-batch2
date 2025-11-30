@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
 
 #root {
   max-width: 1280px;
@@ -46,7 +46,7 @@
 
 form {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   padding: 20px;
   width: 500px;
   display: inline-block;
@@ -86,11 +86,6 @@ input {
 
 select {
   color: black;
-}
-
-.judul-crud-axios {
-  color: rgb(212, 143, 255);
-  padding: 30px;
 }
 
 table {

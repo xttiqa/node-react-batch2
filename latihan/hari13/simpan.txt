@@ -1,0 +1,17 @@
+// const handleChange = (event) => {
+    //     let {name, value} = event.target
+    //     setInput({...input, [name]:value})
+    // }
+
+    // const handleSubmit = (event) => {
+    //     try {
+    //         event.preventDefault()
+    //         axios.post('http://localhost:3000/api/movie', {title: input.title, year:Number(input.year), categoryId:Number(input.category)})
+    //         fetchData()
+    //         fetchDataCategory()
+    //         console.log(input)
+    //         setInput(...input)
+    //     } catch(err){
+    //         alert(err)
+    //     }
+    // } 
